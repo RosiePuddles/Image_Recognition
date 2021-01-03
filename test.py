@@ -1,6 +1,7 @@
 from matplotlib import pyplot as plt
 from functions import *
 import sys
+import cv2
 
 if __name__ == "__main__":
     current_module = sys.modules[__name__]
