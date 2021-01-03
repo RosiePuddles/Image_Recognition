@@ -7,3 +7,5 @@ report.dvi
 report.log
 report.out
 report.run.xml
+source.bib
+__pycache__
