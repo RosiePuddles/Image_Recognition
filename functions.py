@@ -8,7 +8,7 @@ def fsc(f) -> (np.float, np.ndarray, np.ndarray):
 
     f(t) ~= a0+ sum_{k=1}^{N} ( a_k*cos(2*pi*k*t/T) + b_k*sin(2*pi*k*t/T) )
 
-    :param f : the values of the
+    :param f : array of values to for which the coefficients wish to be calculated
 
     :returns a0 : constant offset of the periodic function
     :returns a: coefficients for cosine functions
@@ -16,7 +16,7 @@ def fsc(f) -> (np.float, np.ndarray, np.ndarray):
     """
     length = f.shape[0] + 2
     y = np.divide(np.multiply(np.fft.rfft(f), 2), length)
-    return y[0].real * 2, y[1:-1].real, -y[1:-1].imag
+    return y[0].real / 2, y[1:-1].real, -y[1:-1].imag
 
 
 def mse(x: np.array, xc: np.array) -> np.float:
@@ -29,7 +29,7 @@ def mse(x: np.array, xc: np.array) -> np.float:
     if x.shape[0] != xc.shape[0]:
         return False
     else:
-        return np.sum(np.power(x - xc, 2))/x.shape[0]
+        return np.sum(np.square(x - xc))/x.shape[0]
 
 
 def derivatives(x: tuple) -> np.ndarray:
@@ -39,8 +39,8 @@ def derivatives(x: tuple) -> np.ndarray:
     d1 = np.multiply(np.multiply(s, x_), n)
     d2 = np.multiply(np.multiply(-s, d1), n)
     d3 = np.multiply(np.multiply(s, d2), n)
-    d4 = np.multiply(np.multiply(-s, d3), n)
-    return np.array([x, np.array([d1[1], d1[0]]), d2, np.array([d3[1], d3[0]]), d4], dtype=object)
+    # d4 = np.multiply(np.multiply(-s, d3), n)
+    return np.array([x, np.array([d1[1], d1[0]]), d2, np.array([d3[1], d3[0]])], dtype=object)
 
 
 def value(t: np.ndarray, c: tuple) -> np.ndarray:
