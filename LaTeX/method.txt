@@ -1,0 +1,14 @@
+1) Remove pixels that aren't the right colour for each of the corners
+-> Check possible points left
+2) Remove rows in for the top corners where there isn't a potential top left AND top right corner
+3) Do the same for the bottom row
+4) Remove columns in the top and bottom left possible positions where there isn't a potential top left AND bottom left
+5) Do the same for the right hand column
+6) Repeat 2-5 since removed values may impact earlier changes
+-> Check possible points left
+7) Save all possible positions for each pixel to an array
+8) Work out the edge with the least possible positions (multiply number of corner possibilities together)
+9) Using this edge, work through each possible point pairing until one pair matches
+10) Take this pair and look down the columns they're in until two other corners are found
+11) Check that the new edges match the sub-image
+12) If they do return, if not keep looking

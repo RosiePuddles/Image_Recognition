@@ -31,5 +31,5 @@ def setup_image(path: str, plot: bool = False, retoffset: bool = False, retsize:
         plt.show()
     out = [parent_image, parent_dims, sub_image]
     out.append(offset) if retoffset else None
-    out.append(size) if retsize else None
+    out.append(size - 1) if retsize else None
     return out
