@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 from matplotlib.patches import Rectangle as rect
 
 
-def setup_image(path: str, plot: bool = False, retoffset: bool = False, retsize: bool = False)\
+def setup_image(path: str, plot: bool = False, retoffset: bool = False, retsize: bool = False, retscale: bool = False)\
         -> (np.ndarray, np.ndarray, np.ndarray):
     # Import parent image and convert to black and white
     parent_image = cv2.cvtColor(cv2.imread(path), cv2.COLOR_RGB2GRAY)
@@ -32,4 +32,5 @@ def setup_image(path: str, plot: bool = False, retoffset: bool = False, retsize:
     out = [parent_image, parent_dims, sub_image]
     out.append(offset) if retoffset else None
     out.append(size - 1) if retsize else None
+    out.append(scale - 1) if retscale else None
     return out
