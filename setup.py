@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 from matplotlib.patches import Rectangle as rect
+from random import randint
 
 
 def setup_image(path: str, plot: bool = False, retoffset: bool = False, retsize: bool = False, retscale: bool = False)\
@@ -34,3 +35,11 @@ def setup_image(path: str, plot: bool = False, retoffset: bool = False, retsize:
     out.append(size - 1) if retsize else None
     out.append(scale - 1) if retscale else None
     return out
+
+
+def row_resizing(path: str) -> [[float, float], ]:
+    """
+    :param path: path to image
+    :return: [[array of min and max colour values], ]
+    """
+
